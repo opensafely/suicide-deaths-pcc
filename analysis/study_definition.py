@@ -3,11 +3,26 @@ from cohortextractor import StudyDefinition, patients, codelist, codelist_from_c
 
 study = StudyDefinition(
     default_expectations={
-        "date": {"earliest": "1900-01-01", "latest": "today"},
+        "date": {"earliest": "2019-01-28", "latest": "2020-03-31"},
         "rate": "uniform",
         "incidence": 0.5,
     },
-    population=patients.registered_with_one_practice_between(
-        "2019-02-01", "2020-02-01"
+    population=patients.satisfying(
+        """
+        registered AND
+        age > 16
+        """
     ),
+    registered=patients.registered_as_of(
+        "2020-03-31",
+        return_expectations={"incidence": 0.9},
+    ),
+    age=patients.age_as_of(
+        "2020-03-31",
+        return_expectations={
+            "rate": "universal",
+            "int": {"distribution": "population_ages"},
+        },
+    ),
+
 )
