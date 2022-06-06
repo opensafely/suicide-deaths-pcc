@@ -1,5 +1,14 @@
-from cohortextractor import StudyDefinition, patients, codelist, codelist_from_csv  # NOQA
-from codelists import ethnicity6_codes
+from cohortextractor import (
+    StudyDefinition,
+    patients,
+    codelist,
+    codelist_from_csv)
+from codelists import (
+    codes_ethnicity6,
+    codes_injury_poisoning_undet_intent,
+    codes_intentional_self_harm,
+    codes_sequelae_self_harm_injury_poisoning
+)
 
 study = StudyDefinition(
     default_expectations={
@@ -26,6 +35,24 @@ study = StudyDefinition(
             "int": {"distribution": "population_ages"},
         },
     ),
+    injury_poisoning_undet_intent_date=patients.with_these_codes_on_death_certificate(
+        between=["2019-01-28", "2020-03-31"],
+        codelist=codes_injury_poisoning_undet_intent,
+        returning="date_of_death",
+        date_format="YYYY-MM-DD",
+    ),
+    intentional_self_harm_date=patients.with_these_codes_on_death_certificate(
+        between=["2019-01-28", "2020-03-31"],
+        codelist=codes_intentional_self_harm,
+        returning="date_of_death",
+        date_format="YYYY-MM-DD",
+    ),
+    sequelae_self_harm_injury_poisoning=patients.with_these_codes_on_death_certificate(
+        between=["2019-01-28", "2020-03-31"],
+        codelist=codes_sequelae_self_harm_injury_poisoning,
+        returning="date_of_death",
+        date_format="YYYY-MM-DD",
+    ),
     # Define sex variable
     sex=patients.sex(
         return_expectations={
@@ -44,7 +71,7 @@ study = StudyDefinition(
             "Other": "eth='5'",
         },
         eth=patients.with_these_clinical_events(
-            ethnicity6_codes,
+            codes_ethnicity6,
             returning="category",
             find_last_match_in_period=True,
             include_date_of_match=False,
