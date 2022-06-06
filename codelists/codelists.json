@@ -5,6 +5,24 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
       "downloaded_at": "2022-05-04 09:50:57.832700Z",
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
+    },
+    "user-HIsmail-icd10_injury_poisoning_undet_intent.csv": {
+      "id": "user/HIsmail/icd10_injury_poisoning_undet_intent/240a96cc",
+      "url": "https://codelists.opensafely.org/codelist/user/HIsmail/icd10_injury_poisoning_undet_intent/240a96cc/",
+      "downloaded_at": "2022-06-06 07:59:57.048400Z",
+      "sha": "a539eef049b0a9b0aa8ce02c37b63cb43f36f16c"
+    },
+    "user-HIsmail-icd10_intentional_self_harm.csv": {
+      "id": "user/HIsmail/icd10_intentional_self_harm/3d1a0a01",
+      "url": "https://codelists.opensafely.org/codelist/user/HIsmail/icd10_intentional_self_harm/3d1a0a01/",
+      "downloaded_at": "2022-06-06 08:01:41.149142Z",
+      "sha": "d29f7e084808a03d5ade87589231ade23fa1e7a2"
+    },
+    "user-HIsmail-icd10_sequelae_self_harm_injury_poisoning.csv": {
+      "id": "user/HIsmail/icd10_sequelae_self_harm_injury_poisoning/0afb2397",
+      "url": "https://codelists.opensafely.org/codelist/user/HIsmail/icd10_sequelae_self_harm_injury_poisoning/0afb2397/",
+      "downloaded_at": "2022-06-06 08:02:44.558973Z",
+      "sha": "6715b8b6b1bd9d95e3d69b7da09f9bc9bad87069"
     }
   }
 }
