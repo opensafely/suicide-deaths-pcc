@@ -19,7 +19,12 @@ study = StudyDefinition(
     population=patients.satisfying(
         """
         registered AND
-        age > 16
+        age > 16 AND
+
+        (sequelae_self_harm_injury_poisoning OR
+        injury_poisoning_undet_intent OR
+        intentional_self_harm)
+
         """
     ),
     # Define registered variable
@@ -35,11 +40,25 @@ study = StudyDefinition(
             "int": {"distribution": "population_ages"},
         },
     ),
+    # TODO: ADD SHORT DESCRIPTION
+    # TODO: THINK ABOUT BETTER VARIABLE NAME?
+    injury_poisoning_undet_intent=patients.with_these_codes_on_death_certificate(
+        between=["2019-01-28", "2020-03-31"],
+        codelist=codes_injury_poisoning_undet_intent,
+        returning="binary_flag",
+    ),
     injury_poisoning_undet_intent_date=patients.with_these_codes_on_death_certificate(
         between=["2019-01-28", "2020-03-31"],
         codelist=codes_injury_poisoning_undet_intent,
         returning="date_of_death",
         date_format="YYYY-MM-DD",
+    ),
+    # TODO: ADD SHORT DESCRIPTION
+    # TODO: THINK ABOUT BETTER VARIABLE NAME?
+    intentional_self_harm=patients.with_these_codes_on_death_certificate(
+        between=["2019-01-28", "2020-03-31"],
+        codelist=codes_intentional_self_harm,
+        returning="binary_flag",
     ),
     intentional_self_harm_date=patients.with_these_codes_on_death_certificate(
         between=["2019-01-28", "2020-03-31"],
@@ -47,7 +66,14 @@ study = StudyDefinition(
         returning="date_of_death",
         date_format="YYYY-MM-DD",
     ),
+    # TODO: ADD SHORT DESCRIPTION
+    # TODO: THINK ABOUT BETTER VARIABLE NAME?
     sequelae_self_harm_injury_poisoning=patients.with_these_codes_on_death_certificate(
+        between=["2019-01-28", "2020-03-31"],
+        codelist=codes_sequelae_self_harm_injury_poisoning,
+        returning="binary_flag",
+    ),
+    sequelae_self_harm_injury_poisoning_date=patients.with_these_codes_on_death_certificate(
         between=["2019-01-28", "2020-03-31"],
         codelist=codes_sequelae_self_harm_injury_poisoning,
         returning="date_of_death",
