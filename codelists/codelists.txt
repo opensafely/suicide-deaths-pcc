@@ -1,1 +1,4 @@
 opensafely/ethnicity/2020-04-27
+user/HIsmail/icd10_injury_poisoning_undet_intent/240a96cc
+user/HIsmail/icd10_intentional_self_harm/3d1a0a01
+user/HIsmail/icd10_sequelae_self_harm_injury_poisoning/0afb2397
