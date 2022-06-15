@@ -15,7 +15,7 @@ data<-read.csv(file = file_source)
 data$undetermined_ICD_date <- as.Date(data$undetermined_ICD_date, format = "%Y-%m-%d")
 data$intentional_ICD_date <- as.Date(data$intentional_ICD_date, format = "%Y-%m-%d")
 data$sequelae_ICD_date <- as.Date(data$sequelae_ICD_date, format = "%Y-%m-%d")
-data$Last_GP_date <- as.Date(data$Last_GP_date, format = "%Y-%m-%d")
+data$last_gp_date <- as.Date(data$last_gp_date, format = "%Y-%m-%d")
 
 #Define binary age variable to use as a filter
 data$age16 <- ifelse(data$age >= 16, 1,0)
@@ -44,8 +44,8 @@ data <- data%>%
   drop_na(deathdate)
 
 #Need to compare date of latest GP consultation with death date.
-#data$days_after_contact<-difftime(data$deathdate ,data$Last_GP_date)
-data$days_after_contact<-data$deathdate-data$Last_GP_date
+#data$days_after_contact<-difftime(data$deathdate ,data$last_gp_date)
+data$days_after_contact<-data$deathdate-data$last_gp_date
 
 data$death_30<-ifelse(data$days_after_contact<=30, 1, 0)
 data$death_60<-ifelse(data$days_after_contact<=60, 1, 0)
