@@ -65,7 +65,7 @@ data$death_120<-ifelse(data$days_after_contact<=120, 1, 0)
 # "death_90"             
 # "death_120"
 
-t30<-data %>%
+t1<-data %>%
   select(age,undetermined_ICD_flag,intentional_ICD_flag,
          sequelae_ICD_flag,sex,ethnicity,death_30,death_60,death_90,death_120) %>%
   group_by(sex) %>%
