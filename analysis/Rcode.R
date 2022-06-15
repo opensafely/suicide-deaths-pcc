@@ -65,24 +65,54 @@ data$death_120<-ifelse(data$days_after_contact<=120, 1, 0)
 # "death_90"             
 # "death_120"
 
-t1<-data %>%
+xtab30<-data %>%
   select(age,undetermined_ICD_flag,intentional_ICD_flag,
          sequelae_ICD_flag,sex,ethnicity,death_30,death_60,death_90,death_120) %>%
   group_by(sex) %>%
-  count(death_30)
-
-sex_30<-t1%>%
+  count(death_30)%>%
   pivot_wider(
   names_from = death_30,
   names_sep = ".",
-  values_from = c(n)
-)
+  values_from = c(n))
 
-# Total Number
-# COD diagnosis group
-# Gender
-# COD and Gender
+xtab60<-data %>%
+  select(age,undetermined_ICD_flag,intentional_ICD_flag,
+         sequelae_ICD_flag,sex,ethnicity,death_30,death_60,death_90,death_120) %>%
+  group_by(sex) %>%
+  count(death_60)%>%
+  pivot_wider(
+    names_from = death_60,
+    names_sep = ".",
+    values_from = c(n))
 
+xtab90<-data %>%
+  select(age,undetermined_ICD_flag,intentional_ICD_flag,
+         sequelae_ICD_flag,sex,ethnicity,death_30,death_60,death_90,death_120) %>%
+  group_by(sex) %>%
+  count(death_90)%>%
+  pivot_wider(
+    names_from = death_90,
+    names_sep = ".",
+    values_from = c(n))
 
+xtab120<-data %>%
+  select(age,undetermined_ICD_flag,intentional_ICD_flag,
+         sequelae_ICD_flag,sex,ethnicity,death_30,death_60,death_90,death_120) %>%
+  group_by(sex) %>%
+  count(death_120)%>%
+  pivot_wider(
+    names_from = death_120,
+    names_sep = ".",
+    values_from = c(n))
 
+xtab30$Days_from_GP <- 30
+xtab60$Days_from_GP <- 60
+xtab90$Days_from_GP <- 90
+xtab120$Days_from_GP <- 120
 
+xtab30<-xtab30[c(5,1, 2:4)]
+xtab60<-xtab60[c(5,1, 2:4)]
+xtab90<-xtab90[c(5,1, 2:4)]
+xtab120<-xtab120[c(5,1, 2:4)]
+
+FinalTable<-rbind(xtab30,xtab60,xtab90,xtab120)
