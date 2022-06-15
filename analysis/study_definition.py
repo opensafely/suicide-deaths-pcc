@@ -86,7 +86,7 @@ study = StudyDefinition(
             "category": {"ratios": {"M": 0.49, "F": 0.51}},
         }
     ),
-    # Define latest_gp_date
+    # Define latest_gp_date as date of the latest GP consultation within the study period.
     latest_gp_date=patients.with_gp_consultations(
         between=["2018-12-02", "2020-03-31"],
         # 02/12/2018 is 120 days before the start of the study period.
