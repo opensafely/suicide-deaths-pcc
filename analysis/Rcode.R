@@ -1,3 +1,7 @@
+
+## TODO: Add aim etc
+
+
 library(tidyverse)
 library(here)
 #Add data source - input.csv
@@ -12,7 +16,7 @@ data <- read.csv(file = file_source)
 # "ethnicity"
 # "patient_id"
 
-#C onvert data type for date fields
+# Convert data type for date fields
 data$undetermined_ICD_date <- as.Date(data$undetermined_ICD_date, format = "%Y-%m-%d")
 data$intentional_ICD_date <- as.Date(data$intentional_ICD_date, format = "%Y-%m-%d")
 data$sequelae_ICD_date <- as.Date(data$sequelae_ICD_date, format = "%Y-%m-%d")
