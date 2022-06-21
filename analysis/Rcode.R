@@ -74,6 +74,12 @@ data$death_120 <- ifelse(data$days_after_contact <= 120,  "Y", "N")
 # "death_90"             
 # "death_120"
 
+data$death_30 <- data$death_30 %>% replace_na('No_GP_date')
+data$death_60 <- data$death_60 %>% replace_na('No_GP_date')
+data$death_90 <- data$death_90 %>% replace_na('No_GP_date')
+data$death_120 <- data$death_120 %>% replace_na('No_GP_date')
+
+
 xtab30 <- data %>%
   select(age,undetermined_ICD_flag,intentional_ICD_flag,
          sequelae_ICD_flag,sex,ethnicity,death_30,death_60,death_90,death_120) %>%
@@ -81,7 +87,7 @@ xtab30 <- data %>%
   count(death_30) %>%
   pivot_wider(
   names_from = death_30,
-  names_prefix = "died30_",
+  names_prefix = "died_",
   names_sep = ".",
   values_from = c(n))
 
@@ -92,7 +98,7 @@ xtab60 <- data %>%
   count(death_60) %>%
   pivot_wider(
     names_from = death_60,
-    names_prefix = "died60_",
+    names_prefix = "died_",
     names_sep = ".",
     values_from = c(n))
 
@@ -103,7 +109,7 @@ xtab90 <- data %>%
   count(death_90) %>%
   pivot_wider(
     names_from = death_90,
-    names_prefix = "died90_",
+    names_prefix = "died_",
     names_sep = ".",
     values_from = c(n))
 
@@ -114,7 +120,7 @@ xtab120 <- data %>%
   count(death_120) %>%
   pivot_wider(
     names_from = death_120,
-    names_prefix = "died120_",
+    names_prefix = "died_",
     names_sep = ".",
     values_from = c(n))
 
