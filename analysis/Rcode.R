@@ -81,6 +81,7 @@ xtab30 <- data %>%
   count(death_30) %>%
   pivot_wider(
   names_from = death_30,
+  names_prefix = "died30_",
   names_sep = ".",
   values_from = c(n))
 
@@ -91,6 +92,7 @@ xtab60 <- data %>%
   count(death_60) %>%
   pivot_wider(
     names_from = death_60,
+    names_prefix = "died60_",
     names_sep = ".",
     values_from = c(n))
 
@@ -101,6 +103,7 @@ xtab90 <- data %>%
   count(death_90) %>%
   pivot_wider(
     names_from = death_90,
+    names_prefix = "died90_",
     names_sep = ".",
     values_from = c(n))
 
@@ -111,6 +114,7 @@ xtab120 <- data %>%
   count(death_120) %>%
   pivot_wider(
     names_from = death_120,
+    names_prefix = "died120_",
     names_sep = ".",
     values_from = c(n))
 
