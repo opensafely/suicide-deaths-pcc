@@ -56,10 +56,11 @@ data <- data %>%
 #data$days_after_contact<-difftime(data$deathdate ,data$last_gp_date)
 data$days_after_contact<-data$deathdate-data$last_gp_date
 
-data$death_30 <- ifelse(data$days_after_contact <= 30, 1, 0)
-data$death_60 <- ifelse(data$days_after_contact <= 60, 1, 0)
-data$death_90 <- ifelse(data$days_after_contact <= 90, 1, 0)
-data$death_120 <- ifelse(data$days_after_contact <= 120, 1, 0)
+# Changed flag to "Y" and "N" for use later in labelling columns
+data$death_30 <- ifelse(data$days_after_contact <= 30, "Y", "N")
+data$death_60 <- ifelse(data$days_after_contact <= 60,  "Y", "N")
+data$death_90 <- ifelse(data$days_after_contact <= 90,  "Y", "N")
+data$death_120 <- ifelse(data$days_after_contact <= 120,  "Y", "N")
 
 # List of variables
 # "age"                  
