@@ -57,10 +57,10 @@ data <- data %>%
 data$days_after_contact <- data$deathdate - data$last_gp_date
 
 # Changed flag to "yes" and "no" for use later in labelling columns
-data$death_30 <- ifelse(data$days_after_contact <= 30, "yes", "no")
-data$death_60 <- ifelse(data$days_after_contact <= 60,  "yes", "no")
-data$death_90 <- ifelse(data$days_after_contact <= 90,  "yes", "no")
-data$death_120 <- ifelse(data$days_after_contact <= 120,  "yes", "no")
+data$death_30 <- ifelse(data$days_after_contact >= 0 & data$days_after_contact <= 30, "yes", "no")
+data$death_60 <- ifelse(data$days_after_contact >= 0 & data$days_after_contact <= 60,  "yes", "no")
+data$death_90 <- ifelse(data$days_after_contact >= 0 & data$days_after_contact <= 90,  "yes", "no")
+data$death_120 <- ifelse(data$days_after_contact >= 0 & data$days_after_contact <= 120,  "yes", "no")
 
 # List of variables
 # "age"                  
@@ -140,3 +140,4 @@ FinalTable <- FinalTable  %>%
 
 # Write table
 write_csv(FinalTable, here("output", "summary_table.csv"))
+
