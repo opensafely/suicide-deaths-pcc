@@ -4,7 +4,6 @@ from cohortextractor import (
     codelist,
     codelist_from_csv)
 from codelists import (
-    codes_ethnicity6,
     codes_injury_poisoning_undet_intent,
     codes_intentional_self_harm,
     codes_sequelae_self_harm_injury_poisoning
