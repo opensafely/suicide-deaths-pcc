@@ -4,7 +4,6 @@ from cohortextractor import (
     codelist,
     codelist_from_csv)
 from codelists import (
-    codes_ethnicity6,
     codes_injury_poisoning_undet_intent,
     codes_intentional_self_harm,
     codes_sequelae_self_harm_injury_poisoning
@@ -18,13 +17,14 @@ study = StudyDefinition(
     },
     population=patients.satisfying(
         """
+        # Restrict to registered patients above 16yo
         registered AND
         age > 16 AND
 
+        # Restrict population to patients with suicide death ICD10 code
         (sequelae_ICD_flag OR
         undetermined_ICD_flag OR
         intentional_ICD_flag)
-
         """
     ),
     # Define registered variable
@@ -41,7 +41,6 @@ study = StudyDefinition(
         },
     ),
     # Suicide death with Undetermined intent
-
     undetermined_ICD_flag=patients.with_these_codes_on_death_certificate(
         between=["2019-01-28", "2020-03-31"],
         codelist=codes_injury_poisoning_undet_intent,
@@ -97,40 +96,5 @@ study = StudyDefinition(
         returning='date',
         date_format="YYYY-MM-DD",
         return_expectations=None
-    ),
-    # Define ethnicity variable
-    ethnicity=patients.categorised_as(
-        {
-            "Unknown": "DEFAULT",
-            "White": "eth='1'",
-            "Mixed": "eth='2'",
-            "Asian": "eth='3'",
-            "Black": "eth='4'",
-            "Other": "eth='5'",
-        },
-        eth=patients.with_these_clinical_events(
-            codes_ethnicity6,
-            returning="category",
-            find_last_match_in_period=True,
-            include_date_of_match=False,
-            return_expectations={
-                "category": {
-                    "ratios": {"1": 0.2, "2": 0.2, "3": 0.2, "4": 0.2, "5": 0.2}
-                },
-                "incidence": 0.75,
-            },
-        ),
-        return_expectations={
-            "category": {
-                "ratios": {
-                    "White": 0.2,
-                    "Mixed": 0.2,
-                    "Asian": 0.2,
-                    "Black": 0.2,
-                    "Other": 0.2,
-                }
-            },
-            "incidence": 0.8,
-        },
     ),
 )

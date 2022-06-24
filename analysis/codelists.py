@@ -1,12 +1,5 @@
 from cohortextractor import codelist_from_csv
 
-codes_ethnicity6 = codelist_from_csv(
-    "codelists/opensafely-ethnicity.csv",
-    system="ctv3",
-    column="Code",
-    category_column="Grouping_6",
-)
-
 codes_injury_poisoning_undet_intent = codelist_from_csv(
     "codelists/user-HIsmail-icd10_injury_poisoning_undet_intent.csv",
     system="icd10",
